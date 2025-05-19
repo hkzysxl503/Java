@@ -1,0 +1,632 @@
+* 第03章-讲义-面向对象(上)
+在软件开发领域中，面向对象程序设计（Object-Oriented Programming，OOP）一直占据着重要的地位，Java被广泛认可为一种完全意义上的面向对象编程语言。因此，了解面向对象的编程思想对于学习Java开发至关重要。本章将对面向对象的相关知识进行讲解。
+** 1 - 面向对象概述
+常见的程序设计模型分为面向过程和面向对象两种，面向过程关注的是解决问题的步骤和流程，将问题拆解为一系列的函数或模块进行处理，强调编程的逻辑流程和函数的调用。
+面向对象则是把构成问题的事物按照一定规则划分为多个独立的对象，通过对象之间的交互和协作来解决问题。相比于面向过程，面向对象降低了代码的耦合性、使程序易于维护和重用。
+*** 1 - 面向对象相关概念
+**** 面向对象的思想
+面向对象将现实世界中的事物抽象为对象，每个对象都有自己的特征和行为，通过不同对象之间的交互来完成复杂任务。提供了更高模块化能力和可维护性。
+**** 对象
+对象是具体而实际的，具有特征和行为的实体，世间万物皆可为对象。对象通过封装将特征和行为捆绑在一起，并对外隐藏实现细节。
+**** 类
+类是描述对象的特征和行为的模板，它可以看作是对象的抽象。对象是类的具体化。
+类为对象的特征和行为提供了统一的定义和结构，使他们可以按相同方式进行交互。
+*** 2 - 面向对象的特性
+在软件设计过程中，随着需求的不断变化和程序复杂度的不断提高，面向对象为了能更有效地组织和管理代码，引入了三大关键特性—封装、继承和多态。
+**** 1 - 封装
+封装是指将对象的特征和行为封装起来，形成一个独立的对象，并向用户暴露操作对象的方法，而不要求用户知道对象内部的具体实现。这种方式避免了外部对对象直接进行修改，从而提高了程序的安全性和可维护性。
+例如，将一辆汽车看作一个对象。司机在开车时只需要知道如何启动、加速、刹车等，不需要了解汽车的内部是如何实现这些功能的。这样可以防止司机随意调整汽车内部的零件，从而保证了汽车的安全性。
+**** 2 - 继承
+继承是描述类之间关系的一个重要概念，它允许一个类不需要写任何属性和方法就可以拥有另一个类的属性和方法，这种类关系中，前者称为子类，后者称为父类。子类除了可以直接使用继承自父类的属性和方法，还可以添加自己的特有属性和方法，或者重写父类的方法来实现自己的功能。
+例如，如果有一个交通工具类作为父类，可以派生出“汽车”类和“轮船”类等作为子类。这意味着汽车和轮船都是交通工具，它们继承了交通工具类的共同特征和行为，同时还拥有自己特有的特征和行为。
+**** 3 - 多态
+多态是指同一操作作用于不同的对象，可以产生不同的行为。多态主要基于继承和重写实现，当父类拥有的属性和方法被多个子类继承后，子类根据自身的情况对继承自父类的方法进行重写，可以表现出不同的行为。
+例如，同为人类的理发师和演员，当需要执行cut操作时，理发师的行为是剪发，演员的行为是停止表演等。不同的对象，所表现的行为是不一样的。多态的特性提高了代码的灵活性和可替换性，使得编程人员可以更加方便地进行代码的优化和扩展。
+** 2 - 类与对象
+通过3.1节的学习，我们已经初步了解了面向对象编程的核心概念—类与对象，它们在Java程序中扮演着至关重要的角色。本节将详细讲解Java中的类与对象。
+*** 1 - 类的定义
+类的成员主要包括成员变量和成员方法。
+    通常将成员变量称为属性，用于描述类的特性。
+    成员方法用于描述类的行为。
+在类中可以根据实际需求定义任意数量（包括0个）的成员变量和成员方法。
+定义类的格式：
+#+BEGIN_SRC java
+某访问修饰符 class 某类名{
+    // 定义成员变量
+    某访问修饰符 某数据类型 某变量名;
+    // 定义成员方法
+    某访问修饰符 某返回值的数据类型 某方法名(某形式参数列表) {
+        某方法体
+    }
+}
+#+END_SRC
+*** 2 - 对象的创建与使用
+在Java中，创建类的对象就是实例化该类的过程，通过对象可以访问并调用类的成员变量和成员方法，从而完成特定的任务。创建对象的过程主要包括两个步骤：声明对象和实例化对象。
+**** 1 - 对象的创建
+***** 1 - 对象的声明
+声明对象是指通过类的名称和合适的变量名称来定义对象的类型和名称。
+声明对象的语法格式：
+#+BEGIN_SRC java
+某类名 某对象名;
+#+END_SRC
+对象名使用符合Java标识符的命名规范的名称定义即可，一般使用对象代表的实际含义命名
+#+BEGIN_SRC java
+Student student;
+#+END_SRC
+***** 2 - 对象的实例化
+实例化对象是指使用关键字new来创建一个对象，并为对象分配内存空间，最后将对象的引用赋值给之前声明的对象名。
+     对象的引用是指对象所在内存空间的地址值。
+实例化对象的语法格式如下：
+#+BEGIN_SRC java
+某对象名 = new 某类名();
+#+END_SRC
+#+BEGIN_SRC java
+student = new Student();
+#+END_SRC
+***** 3 - 对象的声明并实例化
+除了分开声明对象和进行实例化的方式，还可以在声明对象的同时对其进行实例化。
+例如：创建Student.java文件中的Student对象。
+#+BEGIN_SRC java
+某类名 某对象名 = new 某类名();
+#+END_SRC
+#+BEGIN_SRC java
+Student student = new Student();
+#+END_SRC
+原理解析：
+    1. Student student表示在栈内存中创建了一个Student对象，名称为student。
+    2. new Student()会在堆内存中创建一个对象，该对象中包含多个属性，如果没有手动为这些属性赋初始值，系统会为其分配默认值，同时为Student分配一个地址值。
+    3. 接着把地址值赋给变量student，通过student记录的地址值可以找到该对象。
+***** 4 - Student对象在内存中的存储形式
+[[./第03章-讲义-面向对象(上)-1.png]]
+**** 2 - 对象的使用
+***** 1 - 对象的属性的访问
+#+BEGIN_SRC java
+某对象名.某属性名
+#+END_SRC
+#+BEGIN_SRC java
+某对象名.某属性名 = 某值;
+#+END_SRC
+***** 2 - 对象的方法的调用
+#+BEGIN_SRC java
+某对象名.某方法名(某实际参数列表)
+#+END_SRC
+**** 代码案例 - Example 01 - 对象的创建与使用
+为了更好地理解对象的创建与使用，下面通过一个案例创建文件Student.java中的Student类的对象，并为对象的属性赋值，然后调用对象的方法。
+#+BEGIN_SRC java
+//定义一个Student类
+class Student {
+    String name;    //定义成员变量：姓名
+    int classId;    //定义成员变量：班级
+    int studentId;  //定义成员变量：学号
+    String address; //定义成员变量：地址
+    //定义成员方法：自我介绍
+    public void introduce(){
+        System.out.println("大家好，我是" + classId +"班的" + name +
+                "，我的学号是" + studentId + "，我来自" + address + "。");
+    }
+    //定义成员方法：学习
+    public void study(){
+        System.out.println("我要开始学习了！");
+    }
+}
+public class  Example01{
+    public static void main(String[] args) {
+        //创建学生对象1
+        Student student1 = new Student();
+        //访问成员变量
+        student1.name = "小明";
+        student1.classId = 12;
+        student1.studentId = 1205;
+        student1.address = "北京";
+        //访问成员方法
+        student1.introduce();
+        student1.study();
+        //创建学生对象2
+        Student student2 = new Student();
+        //访问成员变量
+        student2.name = "张三";
+        student2.classId = 13;
+        student2.studentId = 1301;
+        student2.address = "山西";
+        //访问成员方法
+        student2.introduce();
+        student2.study();
+    }
+}
+#+END_SRC
+*** 3 - 值传递、对象的引用传递
+**** 1 - 基本数据类型的值       作为方法的实际参数：值传递
+在前面关于方法的学习中，传入的参数都是基本数据类型，它实际上传递的是参数的副本或者参数的值，因此在方法内部修改参数的值，并不会影响到原始的值，这种传递方式被称为值传递。
+**** 2 - 引用数据类型的类的对象 作为方法的实际参数：对象的引用传递
+而类是引用数据类型，也就是说类的实例对象在内存中的存储空间可以被多个栈内存引用。
+在方法调用中，当把一个对象作为参数传递给方法时，实际上传递的是对象的引用，也就是对象的内存地址值，这种传递方式被称为对象的引用传递。
+当在方法内部对引用对象进行修改时，原始对象也会受到影响，因为它们指向同一个内存地址。
+**** 代码案例 - Example 02 - 值传递和对象的引用传递的区别
+给员工加薪的案例
+#+BEGIN_SRC java
+class Staff {
+    String name;   //员工姓名
+    int salary;     //员工薪水
+}
+public class Example02 {
+    public static void main(String[] args) {
+        Staff staff = new Staff();
+        staff.name = "小王";
+        staff.salary = 5000;
+        System.out.println(staff.name + "的原本薪水：" + staff.salary +"元/月");
+        modifySalary(staff.salary);
+        System.out.println("值传递加薪：" + staff.name + "加薪后薪水为" + staff.salary +"元/月");
+        modifySalary(staff);
+        System.out.println("引用传递加薪："+ staff.name + "加薪后薪水为" + staff.salary +"元/月");
+    }
+    //传递基本类型餐厨，进行加薪操作
+    public static void modifySalary(int salary){
+        salary += 1000;
+    }
+    //传递Staff对象类型参数，进行加薪操作
+    public static void modifySalary(Staff staff){
+        staff.salary += 1000;
+    }
+}
+#+END_SRC
+** 3 - 封装
+封装是面向对象的三大特性之一，它是保护数据并提供安全操作的关键，深刻理解封装的思想是构建高质量Java程序的基础
+*** 1 - 为什么要封装
+**** 定义
+封装是指隐藏对象的属性和内部操作的实现细节，只对外公开接口，以控制对程序中属性的读取和修改的访问级别。
+**** 优点
+这种通过接口访问数据的方式，可以在不破坏数据完整性的情况下对其进行修改。
+**** 代码案例 - Example 03 - 类在没有进行封装的情况下直接修改属性的值会带来的问题
+修改银行账户余额
+#+BEGIN_SRC java
+class BankAccount {
+    String accountNumber;   //定义账户号码
+    double balance;         //定义余额
+    public void broadcast(String accountNumber,double balance){
+        System.out.println("账户" + accountNumber + "的余额为" + balance + "元");
+    }
+}
+public class Example03 {
+    public static void main(String[] args) {
+        BankAccount account = new BankAccount();
+        account.accountNumber = "123456";
+        account.balance = -500;
+        account.broadcast(account.accountNumber,account.balance);
+    }
+}
+#+END_SRC
+分析类没有进行封装存在的问题
+    1. 缺乏访问控制导致安全风险
+        account对象的属性没有显式地添加任何访问控制权限，此时Java会默认为属性设置为default访问权限，表示该属性可以被同一个包内其他类访问，而包外的任何类都不能访问。
+        这种情况下，外部可以直接访问和修改account对象的属性。
+    2. 缺乏验证逻辑
+        balance属性允许外部直接修改账户余额，这样设计使得外部可以任意篡改账户余额，而不经过合适的验证和控制。
+解决方法：
+    1. 对成员变量的访问做出限制，不允许外界随意访问，只提供公共方法控制外部对属性的访问。
+    2. 在方法中引入验证和控制逻辑确保账户余额的数值符合要求。
+*** 2 - 访问控制
+**** 定义
+在Java中，访问控制是一种通过访问修饰符来控制类、方法、变量和构造函数的可见性的机制。
+**** 访问修饰符
+***** 1 - 公共  访问修饰符 public
+具有最大的访问权限。用public修饰的类、方法和变量，包内和包外的任何类均可以访问。
+***** 2 - 受保护访问修饰符 protected
+用protected修饰的类、方法和变量，包内的任何类以及包外继承了该类的子类可以访问。
+***** 3 - 默认  访问修饰符 default
+默认访问权限的类、方法和变量，可以被包内的其他类访问，而包外的任何类都不能对其访问。
+***** 4 - 私有  访问修饰符 private
+用private修饰的类、方法和变量，只有本类可以访问，而包内包外的其他类均不能对其访问。
+***** 总结 4 种访问修饰符的访问范围
+|------------+----------+----------+--------+--------------|
+| 访问修饰符 | 同一类中 | 同一包中 | 子类中 | 不同包不同类 |
+|------------+----------+----------+--------+--------------|
+| public     | √        | √        | √      | √            |
+| protected  | √        | √        | √      | –            |
+| default    | √        | √        | –      | –            |
+| private    | √        | –        | –      | –            |
+|------------+----------+----------+--------+--------------|
+*** 3 - 封装的实现
+**** 定义
+类的封装是指将对象的状态信息隐藏在对象内部，不允许外部程序直接访问对象的内部信息，而是通过该类提供的指定方法实现对内部信息的操作和访问。
+**** 实现
+实现类的封装需要进行以下几个操作。
+***** 1 - 成员变量私有化
+将类的成员变量声明为私有，即使用private修饰，以限制外部类中对成员的直接访问。
+***** 2 - 提供公共访问方法
+为私有成员变量提供公共的访问方法，通常包括获取成员变量值的getter方法和设置成员变量值的setter方法。
+getter方法和setter方法定义格式：
+#+BEGIN_SRC java
+// getter方法
+public 返回类型 get变量名() {
+    return 变量名;
+}
+// setter方法
+public void set变量名(参数类型 参数名) {
+    this.变量名 = 参数名;
+}
+#+END_SRC 
+***** 代码案例 - Example 04 - 修改文件Example03，使用private修饰符修饰accountNumber属性和balance属性，并为其提供公共访问方法setter和getter，以此实现类的封装。
+#+BEGIN_SRC java
+class BankAccount1 {
+    private String accountNumber;   //账号
+    private double balance;         //余额
+    public void setAccountNumber(String accountNumber){
+        this.accountNumber = accountNumber;
+    }
+    public String getAccountNumber(){
+        return accountNumber;
+    }
+    public void setBalance(double balance){
+        if(balance < 0){
+            System.out.println("输入金额有误！");
+        }else {
+            this.balance = balance;
+        }
+    }
+    public double getBalance(){
+        return balance;
+    }
+    public void broadcast(String accountNumber,double balance){
+        System.out.println("账户" + accountNumber + "的余额为" + balance + "元");
+    }
+}
+public class Example04 {
+    public static void main(String[] args) {
+        BankAccount1 account = new BankAccount1();
+        account.setAccountNumber("123456");
+        account.setBalance(-500);
+        account.broadcast(account.getAccountNumber(),account.getBalance());
+    }
+}
+#+END_SRC
+*** 多学一招：实体JavaBean
+在面向对象编程中，经常需要定义一种用来表示实体对象的Java类，这种类被称为实体JavaBean，它是数据封装的一个体现。实体JavaBean的主要目的是用来封装和操作数据，通常与数据库中的表或者其他数据源中的记录相对应。
+实体JavaBean的特点。
+    1. 类中的成员变量都为私有，并且要对外提供相应的getter方法和setter方法。
+    2. 类中必须有一个公共的无参构造方法。
+    3. 类中可以提供带有参数的构造方法，便于创建对象初始化属性值。
+    4. 根据具体需求，类中可以添加其他方法，例如，重写toString()方法等。
+在实际开发中，实体JavaBean仅仅用来封装数据，只提供对数据进行存和取的方法，而对数据的其他 处理操作交给其他类来完成，以实现数据和数据业务处理的分离。
+** 4 - 构造方法
+在Java中，每个类都有一种特殊的方法，用于创建和初始化对象，这种方法被称为构造方法，也叫构造器
+*** 1 - 作用
+在实例化对象时，为对象的属性赋值
+*** 2 - 定义
+**** 1 - 语法
+#+BEGIN_SRC java
+某访问修饰符 某构造方法名 (某参数列表) {
+    构造方法体
+}
+#+END_SRC
+**** 2 - 注意事项
+***** 访问修饰符：
+访问修饰符可以为Java中四种访问修饰符的任意一个。
+***** 返回值类型：
+构造方法没有返回值类型，并且不设置void。
+***** 构造方法名：
+构造方法的方法名必须与类名相同。
+***** 参数列表：
+可选项，参数列表指定了构造方法接收的参数类型和参数名称。它可以包含0个或任意整数个参数。当参数列表为空时，称之为无参构造方法；当参数列表包含一个或多个参数时，称之为有参构造方法。有参构造方法可以在创建对象的同时初始化对象的属性。
+**** 代码案例 - Example 05 - 构造方法的使用
+#+BEGIN_SRC java
+import java.util.Arrays;
+class Car {
+    private String brand;    //汽车品牌
+    private String model;    //汽车型号
+    private String engine;   //发动机
+    //无参构造方法
+    public Car(){
+        System.out.println("调用无参构造方法，无法为属性赋初始值");
+    }
+    //有参构造方法
+    public Car(String brand,String model,String engine){
+        System.out.println("调用有参构造方法，成功为属性赋初始值");
+        this.brand = brand;
+        this.model = model;
+        this.engine = engine;
+    }
+    public void print(){
+        for (String s : Arrays.asList("该汽车的品牌为" + brand, "该汽车的型号为" + model, "该汽车的发动机为" + engine)) {
+            System.out.println(s);
+        }
+    }
+}
+public class Example05 {
+    public static void main(String[] args) {
+        //调用无参构造方法
+        Car car1 = new Car();
+        car1.print();
+        //调用有参构造方法
+        Car car2 = new Car("奥迪","A6","V6涡轮增压发动机");
+        car2.print();
+    }
+}
+#+END_SRC
+*** 3 - 重载
+**** 1 - 定义
+重载的构造方法具有相同的名称但参数列表不同
+**** 2 - 作用
+通过重载构造方法，可以实现在创建对象时使用不同的参数进行初始化。
+**** 代码案例 - Example 06 - 构造方法的重载
+创建不同角色
+#+BEGIN_SRC java
+class Person {
+    private String name;
+    private String role;
+    private String subject;
+    //构造方法一
+    public Person(String name,String role){
+        this.name = name;
+        this.role = role;
+    }
+    //构造方法二
+    public Person(String name,String role,String subject){
+        this.name = name;
+        this.role = role;
+        this.subject = subject;
+    }
+    public void print(){
+        System.out.print("姓名：" + name + "  ");
+        System.out.print("身份：" + role + "  ");
+        System.out.println("教学科目：" + subject);
+    }
+}
+public class Example06 {
+    public static void main(String[] args) {
+        //创建一个学生对象
+        Person student = new Person("小明","学生");
+        student.print();
+        //创建一个教师对象
+        Person teacher = new Person("张伟","教师","数学");
+        teacher.print();
+    }
+}
+#+END_SRC
+*** 4 - 关键字 ~~this~~
+在前面的学习中多次使用到了this关键字。例如，使用在setter方法中设置属性值时就用到了this关键字。
+**** 1 - 定义
+this关键字代表当前对象的引用
+**** 2 - 作用
+可以用来访问当前对象的成员变量、成员方法、构造方法
+***** 1 - 通过关键字 ~~this~~ 访问成员变量
+****** 1 - 作用
+如果方法中存在与成员变量同名的局部变量，在方法中引用变量时，局部变量的作用域会覆盖成员变量，导致无法直接访问成员变量。this关键字可以用于明确指定访问的是成员变量，而不是局部变量。
+****** 2 - 语法
+#+BEGIN_SRC java
+this.成员变量；
+#+END_SRC
+****** 代码案例 - Example 07 - 通过关键字 this 访问成员变量
+#+BEGIN_SRC java
+class User {
+    private String name;
+    private int age;
+    public void setName(String name){
+        this.name = name;
+    }
+    public void setAge(int age){
+        this.age = age;
+    }
+    public void print(){
+        String name = "李四";
+        int age = 20;
+        System.out.println("访问成员变量name和age：name = " + this.name + ", age = " + this.age);
+        System.out.println("访问局部变量name和age：name = " +  name + ", age = " + age);
+    }
+}
+public class Example07 {
+    public static void main(String[] args) {
+        User user = new User();
+        user.setName("张三");
+        user.setAge(18);
+        user.print();
+    }
+}
+#+END_SRC
+***** 2 - 通过关键字 ~~this~~ 调用成员方法
+****** 1 - 作用
+使用this关键字可以在类的成员方法中调用其他成员方法，以完成一些特定的功能。
+****** 2 - 语法
+****** 代码案例 - Example 08 - 通过关键字 this 调用成员方法
+打印书籍信息
+#+BEGIN_SRC java
+class Book {
+    private String title;
+    private String author;
+    private int pageCount;
+    public Book(String title, String author, int pageCount) {
+        this.title = title;
+        this.author = author;
+        this.pageCount = pageCount;
+    }
+    public void displayBookDetails(){
+        System.out.println("书名：" + title);
+        System.out.println("作者：" + author);
+        this.displayPageCount(); // 使用this关键字调用其他成员方法
+    }
+    private void displayPageCount() {
+        System.out.println("页数: " + pageCount);
+    }
+}
+public class Example08 {
+    public static void main(String[] args) {
+        Book book = new Book("Java基础入门","张三",400);
+        book.displayBookDetails();
+    }
+}
+#+END_SRC
+***** 3 - 通过关键字 ~~this~~ 调用构造方法
+****** 1 - 作用
+当一个类中有多个构造方法时，可以在一个构造方法中使用this关键字调用类中的另一个构造方法，从而避免代码重复。
+****** 2 - 语法
+****** 代码案例 - Example 09 - 通过关键字 this 调用构造方法
+#+BEGIN_SRC java
+class Student1{
+    private String name;
+    private int age;
+    public Student1(){
+        System.out.println("实例化了一个新的Student对象");
+    }
+    public Student1(String name,int age){
+        this();          //调用无参构造方法
+        this.name = name;
+        this.age = age;
+    }
+    public void print(){
+        System.out.println("我是" + name + "，年龄" + age); ;
+    }
+}
+public class Example09 {
+    public static void main(String[] args) {
+        Student1 student = new Student1("张三",18);
+        student.print();
+    }
+}
+#+END_SRC
+****** 3 - 注意事项
+******* 1 - 语法格式
+使用this关键字调用构造方法的语法格式为“this(参数)”，不能写成“this.类名(参数)”。
+******* 2 - 调用位置
+使用this关键字只能在构造方法中调用其他构造方法，而不能在其他成员方法中通过this关键字调用构造方法。
+******* 3 - this()语句的出现位置
+在构造方法中，this()语句必须放在第一行，且只能出现一次。
+this关键字调用构造方法的注意事项。
+******* 4 - 互相调用
+不能在一个类的两个构造方法中使用this关键字互相调用。
+例如下边程序的写法是错误的。
+#+BEGIN_SRC java
+class Student{
+    String name;
+         String age;
+    public Student(){
+        this("张三",18);
+        System.out.println("实例化了一个新的Student对象");
+    }
+    public Student(String name,int age){
+        this();          //调用无参构造方法
+        this.name = name;
+        this.age = age;
+    }
+}
+#+END_SRC
+** 5 - static关键字
+在Java中，static关键字的含义是“静态”，它可以修饰类的成员和代码块，被static修饰的成员被称为静态成员，静态成员属于类本身而不属于类的实例，无论创建多少个类的实例，静态成员都只有一份，可以被类的所有实例共享。
+静态成员在程序启动时加载并存在于内存中，在整个程序的运行期间存在。
+被static修饰的代码块被称为静态代码块，它在类的初始化时执行，且只会执行一次。
+*** 1 - 静态变量
+**** 1 - 定义
+在Java类中，被static关键字修饰的成员变量称为静态变量，也叫类变量。
+**** 1 - 访问
+由于静态变量属于类本身，因此可以直接通过类名来访问，而无须创建对象实例。
+***** 1 - 语法
+#+BEGIN_SRC java
+类名.静态变量
+#+END_SRC
+**** 代码案例 - Example 10 - 静态变量的使用
+统计用户创建数量
+#+BEGIN_SRC java
+class UserManager{
+    static int userNum;
+    public UserManager(){
+        userNum ++;
+    }
+}
+// 特别需要注意的一点，访问静态成员变量的时候
+    // 只能用   类名.静态成员变量 的方式访问
+    // 不能用 对象名.静态成员变量 的方式访问
+public class Example10 {
+    public static void main(String[] args) {
+        UserManager userManager_1 = new UserManager();
+        System.out.println(UserManager.userNum);   // 只能用   UserManager.userNum 的方式访问
+        UserManager userManager_2 = new UserManager();
+        System.out.println(UserManager.userNum);
+        UserManager userManager_3 = new UserManager();
+        System.out.println(UserManager.userNum);
+        System.out.println("目前已创建的用户数量为" + UserManager.userNum);
+    }
+}
+#+END_SRC
+**** 1 - 使用静态变量时的注意事项。
+1. 虽然语法上允许通过“对象.静态变量”的方式来访问静态变量，但出于代码的清晰性和规范性考虑，不建议这样做。
+2. 如果想在其他类中直接使用类名调用类的静态变量，该变量不能使用private或protected修饰符修饰。
+3. static关键字只能修饰类的成员变量而不能修饰局部变量，否则编译器会报错。例如，以下代码是错误的。
+#+BEGIN_SRC java
+public class Student{
+    public void study(){
+        static int num = 10;       //这行代码是错误的
+    }
+}
+#+END_SRC
+*** 3.5.2  静态方法
+**** 1 - 定义
+在Java类中，被static关键字修饰的方法称为静态方法，也叫类方法。
+**** 1 - 访问
+同样属于类本身，可以直接通过类名来访问。
+***** 1 - 语法
+调用静态方法的语法格式：
+#+BEGIN_SRC java
+类名.方法名(参数列表)
+#+END_SRC
+**** 代码案例 - Example 11 - 静态方法的使用
+汽车工厂生产汽车的案例演示
+#+BEGIN_SRC java
+class CarFactory{
+    private static int totalCars = 0;
+    public static void produceCar(){
+        totalCars ++;
+        System.out.println("生产了一辆汽车，当前生产线上汽车数量："+ totalCars);
+    }
+    public static int getTotalCars(){
+        return totalCars;
+    }
+}
+public class Example11 {
+    public static void main(String[] args) {
+        //假设有三个生产线同时生产汽车
+        CarFactory.produceCar();
+        CarFactory.produceCar();
+        CarFactory.produceCar();
+        System.out.println("当前生产线上汽车的总数量为" + CarFactory.getTotalCars());
+    }
+}
+#+END_SRC
+**** 使用静态方法时的注意事项
+1. 静态方法中只能访问静态成员，而不能访问实例成员；实例方法中既可以访问静态成员，也可以访问实例成员。
+2. 静态方法中不能使用this关键字和super关键字，super关键字会在后续章节中讲解。
+3. 静态方法不能被重写，但可以被继承。
+*** 3.5.3  静态代码块
+代码块的概念：
+    代码块是一组被包围在一对大括号“{}”中的代码语句。
+代码块的分类：
+    根据有无static关键字修饰，代码块可以分为静态代码块和实例代码块。
+实例代码块：
+    其作用与构造方法类似，可以用于对实例变量进行初始化。
+静态代码块：
+    在类加载时自动执行，可以用于初始化静态变量，由于类只会加载一次，所以静态代码块也只会执行一次。
+**** 代码案例 - Example 12 - 静态代码块和实例代码块的使用
+#+BEGIN_SRC java
+class Student2 {
+    static String name;   //定义静态变量
+    int age;          //定义实例变量
+    public Student2() {
+        System.out.println("执行构造方法");
+    }
+    {
+        System.out.println("执行实例代码块");
+        age = 18;
+    }
+    static {
+        System.out.println("执行静态代码块");
+        name = "张三";
+    }
+}
+public class Example12 {
+    public static void main(String[] args) {
+        Student2 s1= new Student2();
+        System.out.println("name = " + Student2.name+ ",age = " + s1.age);
+        Student2 s2 = new Student2();
+        System.out.println("name = " + Student2.name+ ",age = " + s2.age);
+        Student2 s3 = new Student2();
+        System.out.println("name = " + Student2.name+ ",age = " + s3.age);
+    }
+}
+#+END_SRC
